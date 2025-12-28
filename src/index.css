@@ -1,0 +1,428 @@
+/* Leaflet Map Styles - Must be first */
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fix Leaflet map container */
+.leaflet-container {
+  height: 100vh !important;
+  width: 100vw !important;
+  z-index: 0;
+  font-family: inherit;
+  position: relative;
+  background-color: #e5e7eb !important;
+}
+
+/* Prevent map from going blank */
+.leaflet-container.leaflet-touch-zoom {
+  -ms-touch-action: pan-x pan-y;
+  touch-action: pan-x pan-y;
+}
+
+.leaflet-container.leaflet-touch-drag {
+  -ms-touch-action: pinch-zoom;
+  touch-action: pinch-zoom;
+}
+
+/* Ensure map tiles load */
+.leaflet-tile-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Fix for blank map issue */
+.leaflet-map-pane {
+  z-index: 2;
+}
+
+.leaflet-tile-pane {
+  z-index: 2;
+}
+
+/* Custom marker styles */
+.custom-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Custom popup styles */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+}
+
+.leaflet-popup-tip {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+}
+
+/* Better zoom controls */
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+  background: hsl(var(--card)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  font-size: 18px !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: hsl(var(--muted)) !important;
+}
+
+/* SafeCircle Design System - Premium Campus Safety App */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* Core Brand Colors */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 70%;
+    
+    /* Emergency System */
+    --emergency: 0 84% 60%;
+    --emergency-foreground: 0 0% 100%;
+    --emergency-glow: 0 84% 70%;
+    
+    /* Success/Safe */
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --success-glow: 160 84% 50%;
+    
+    /* Warning */
+    --warning: 25 95% 53%;
+    --warning-foreground: 0 0% 100%;
+    
+    /* Silent Mode */
+    --silent: 258 90% 66%;
+    --silent-foreground: 0 0% 100%;
+    
+    /* Trusted Circle */
+    --trust: 173 80% 40%;
+    --trust-foreground: 0 0% 100%;
+    
+    /* Backgrounds */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    
+    /* Secondary/Muted */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders & Inputs */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+    
+    --radius: 1rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 40px -10px;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(230 91% 65%));
+    --gradient-emergency: linear-gradient(135deg, hsl(0 84% 55%), hsl(0 84% 65%));
+    --gradient-success: linear-gradient(135deg, hsl(160 84% 35%), hsl(160 84% 45%));
+    --gradient-trust: linear-gradient(135deg, hsl(173 80% 35%), hsl(190 80% 45%));
+    --gradient-silent: linear-gradient(135deg, hsl(258 90% 60%), hsl(280 90% 70%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 93% 47%), hsl(35 93% 55%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 20% 98%));
+    --gradient-hero: linear-gradient(180deg, hsl(217 91% 97%), hsl(210 20% 98%));
+    
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+    
+    --secondary: 217 33% 15%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217 33% 15%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 217 33% 15%;
+    --accent-foreground: 210 40% 98%;
+    
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer components {
+  /* Premium Card Styles */
+  .card-elevated {
+    @apply bg-card rounded-2xl shadow-lg border border-border/50;
+    background: var(--gradient-card);
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-xl;
+  }
+  
+  /* Glow Effects */
+  .glow-primary {
+    box-shadow: 0 0 40px -10px hsl(var(--primary));
+  }
+  
+  .glow-emergency {
+    box-shadow: 0 0 60px -10px hsl(var(--emergency));
+  }
+  
+  .glow-success {
+    box-shadow: 0 0 40px -10px hsl(var(--success));
+  }
+  
+  .glow-trust {
+    box-shadow: 0 0 40px -10px hsl(var(--trust));
+  }
+  
+  .glow-gold {
+    box-shadow: 0 0 40px -10px hsl(45 93% 47%);
+  }
+  
+  /* Gradient Text */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+  
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-gold);
+  }
+  
+  /* Gradient Borders */
+  .border-gradient-primary {
+    position: relative;
+    background: var(--gradient-primary);
+    padding: 2px;
+    border-radius: 1rem;
+  }
+  
+  .border-gradient-primary > * {
+    background: hsl(var(--card));
+    border-radius: calc(1rem - 2px);
+  }
+  
+  /* Glass Effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-xl border border-white/10;
+  }
+  
+  /* Safe Area Padding */
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  .safe-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Animated gradient background */
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+  
+  /* Pulse ring animation for SOS */
+  .pulse-ring {
+    animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .pulse-ring-fast {
+    animation: pulse-ring 0.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Floating animation */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* Shimmer effect */
+  .shimmer {
+    animation: shimmer 2s linear infinite;
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+  }
+}
+
+/* Keyframes */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Leaflet Map Overrides */
+.leaflet-container {
+  @apply rounded-2xl;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.leaflet-control-zoom {
+  @apply border-none shadow-lg !important;
+}
+
+.leaflet-control-zoom a {
+  @apply bg-card text-foreground border-none !important;
+}
+
+.leaflet-popup-content-wrapper {
+  @apply bg-card text-foreground rounded-xl shadow-xl border border-border !important;
+}
+
+.leaflet-popup-tip {
+  @apply bg-card !important;
+}
+
+/* Custom marker pulse */
+.marker-pulse {
+  animation: marker-pulse 2s ease-in-out infinite;
+}
+
+@keyframes marker-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
